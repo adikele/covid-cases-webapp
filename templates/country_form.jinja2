@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <form method="post" action="{{ url_for('countries_result') }}">
+        <br>
+        <select id="country_dropdown" name="country_name" required >
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+        </select>
+        <br>
+
+        <input type="submit" value="Show results"/>
+    </form>
+    </body>
+</html>
