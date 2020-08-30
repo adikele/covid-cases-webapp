@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <form method="post" action="{{ url_for('plot_linegraphs') }}">
+        <br>
+        <select id="country_dropdown" name="country_name1" required >
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+        </select>
+        <br>
+
+        <br>
+        <select id="country_dropdown" name="country_name2" required >
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+        </select>
+        <br>
+
+        <br>
+        <select id="country_dropdown" name="country_name3" required >
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+        </select>
+        <br>
+
+        <input type="submit" value="Show results"/>
+    </form>
+    </body>
+</html>
