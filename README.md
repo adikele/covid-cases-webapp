@@ -8,9 +8,7 @@ By Aditya Kelekar, dt:24.8.2020,
 PROJECT PLAN: 
 Stage 1 (completed 24.8.2020): App displays country bar graphs in a user-entered country + 4 other random countries for a fixed date
 
-Stage 2 (in the works): App to display country line graphs showing the rise or decline of Covid-19 infections in a user-entered country 
-
-Stage 3 (in the works): App to display country bar graphs for a user-entered countries (upto 5) 
+Stage 2 (completed 30.8.2020): App displays country line graphs showing the rise or decline of Covid-19 infections in 3 user-entered countries 
 
 Stage 3 (in the works): Developing APIs for this project
 
@@ -24,10 +22,10 @@ The program also shows the data for four other countries, picked randomly, from 
 SPECIFICATIONS:
 This program uses python 3.7 and the following libraries: (i) matplotlib 3.3.0 (ii) pandas 1.1.0 (iii) flask 1.1.2
 This app will be updated on a weekly basis, using the latest "COVID-19 cases worldwide" .csv file.
-The data file can be found at: https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data 
+The .csv file has been downloaded from: https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data 
 
 TESTS:
 Tested for different countries by running program and manually checking ouput. 
 
 HOW TO GET IN TOUCH: 
-Please write to me at Adityakelekar@yahoo.com for contributions and suggestions. Thank you!
+Please write to me at adityakelekar@yahoo.com for contributions and suggestions. Thank you!
