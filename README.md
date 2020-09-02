@@ -10,7 +10,7 @@ Stage 1 (completed 24.8.2020): App displays country bar graphs in a user-entered
 
 Stage 2 (completed 30.8.2020): App displays country line graphs showing the rise or decline of Covid-19 infections in 3 user-entered countries 
 
-Stage 3 (in the works): Developing APIs for this project
+Stage 3 (update 2.9.2020): Developing APIs for this project: first endpoint created
 
 PROJECT DESCRIPTION: Programs to display Covid-19 data taking its source from a .csv file with worldwide figures.
 
@@ -23,6 +23,7 @@ SPECIFICATIONS:
 This program uses python 3.7 and the following libraries: (i) matplotlib 3.3.0 (ii) pandas 1.1.0 (iii) flask 1.1.2
 This app will be updated on a weekly basis, using the latest "COVID-19 cases worldwide" .csv file.
 The .csv file has been downloaded from: https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data 
+Date of downloading file: 1.9.2020
 
 TESTS:
 Tested for different countries by running program and manually checking ouput. 
