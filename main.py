@@ -7,13 +7,14 @@
 import io
 import random
 import pandas as pd
-from flask import Flask, request, render_template, Response
+from flask import Flask, request, render_template, Response, jsonify
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-DATA_FILE = "EUOpenData_24_8_2020"
-DATA_DATE = "24.8.2020"
-NEXT_UPDATE_DATE = "31.8.2020"
+DATA_FILE = "EUOpenData_1_9_2020"
+DATA_DATE = "01/09/2020"
+NEXT_UPDATE_DATE = "08/09/2020"
+NUMBER_OF_DAYS = 147
 global x, y
 
 app = Flask(__name__)
@@ -47,7 +48,7 @@ def fetch_all_countries(df):
     continents = ("Africa", "Europe", "America", "Oceania", "Asia")
     dict_all_countries = dict()
     for i in continents:
-        df_current = df[(df["continentExp"] == i) & (df["dateRep"] == "28/07/2020")]
+        df_current = df[(df["continentExp"] == i) & (df["dateRep"] == DATA_DATE)]
         dict_countries_current_continent = df_current.to_dict()
         list_countries_current_continent = list(
             dict_countries_current_continent["countriesAndTerritories"].values()
@@ -64,14 +65,14 @@ def fetch_home_continent_data(df, country_sel):
     """
     # determining the continent in which the selected country is situated
     dfc = df[
-        (df["countriesAndTerritories"] == country_sel) & (df["dateRep"] == "28/07/2020")
+        (df["countriesAndTerritories"] == country_sel) & (df["dateRep"] == DATA_DATE)
     ]
     dict1 = dfc.to_dict()
     continent = list(dict1["continentExp"].values())
     continent = continent[0]
 
     # getting the list of countries from the same continent
-    df2 = df[(df["continentExp"] == continent) & (df["dateRep"] == "28/07/2020")]
+    df2 = df[(df["continentExp"] == continent) & (df["dateRep"] == DATA_DATE)]
     dict2_countries_of_a_continent = df2.to_dict()
     list_countries = list(
         dict2_countries_of_a_continent["countriesAndTerritories"].values()
@@ -148,7 +149,7 @@ def fetch_all_continent_data(df):
                    values --> list of cases for each of the days recorded since Dec 2019
     """
     # extracting the countries from all continents:
-    df3 = df[(df["dateRep"] == "28/07/2020")]
+    df3 = df[(df["dateRep"] == DATA_DATE)]
     dict3_countries_of_all_continent = df3.to_dict()
     countries_list = list(
         dict3_countries_of_all_continent["countriesAndTerritories"].values()
@@ -173,8 +174,8 @@ def fetch_three_countries_data(
 ):
     """
     Function creates a dict of countries and cases for 3 countries
-    It takes (i) a dict of countries and cases (ii) 3 strings, country_sel
-    (iii) a list of 4 random countries
+    It takes (i) a dict of countries and cases (ii) 3 strings, names of countries
+    (iii) an integer, number of days for which data is desired.
     Returns a dict of countries and cases for 3 countries
     """
     # creating a dict of countries and cases for the 3 countries
@@ -283,8 +284,7 @@ def linegraphs_form():
 def plot_linegraphs():
     global x
     global y
-    n = 140
-
+    
     country_sel1 = request.form["country_name1"]
     country_sel2 = request.form["country_name2"]
     country_sel3 = request.form["country_name3"]
@@ -294,15 +294,38 @@ def plot_linegraphs():
     list_countries, dict_countries_cases = fetch_all_continent_data(df)
 
     dict_three_countries = fetch_three_countries_data(
-        dict_countries_cases, country_sel1, country_sel2, country_sel3, n
+        dict_countries_cases, country_sel1, country_sel2, country_sel3, NUMBER_OF_DAYS
     )
 
-    newlistdate_list = creating_date_list(df, n)
+    newlistdate_list = creating_date_list(df, NUMBER_OF_DAYS)
 
     fig = create_figure_linegraphs(newlistdate_list, dict_three_countries)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype="image/png")
+
+
+@app.route('/api/v1/bargraph/country', methods=['GET'])
+def api_id():
+    '''
+    Provides an endpoint
+    Returns a dictionary with:
+    keys --> user-entered country + 4 other random countries from the same continent as user-entered country
+    values --> ”number of cases” for each of the countries 
+    '''
+    if 'id' in request.args:
+        id = str(request.args['id'])
+    else:
+        return "Error: No id field provided. Please specify an id."
+
+    df = pd.read_csv(DATA_FILE)
+    country_sel = id
+    dict_all_countries = fetch_all_countries (df)
+    list_countries, list_cases = fetch_home_continent_data(df, country_sel)
+    dict_continent = dict(zip(list_countries, list_cases)) 
+    list_countries_random = random_countries(list_countries, country_sel)
+    dict_fivecountries = fetch_five_countries_data(dict_continent, country_sel, list_countries_random)
+    return jsonify(dict_fivecountries)
 
 
 if __name__ == "__main__":

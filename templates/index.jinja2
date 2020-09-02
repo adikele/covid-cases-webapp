@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
     <body>
-        Hello! This is a site for Covid-19 plots.
-        <br> App shows two kinds of plots:
+        Hello! This is a website for Covid-19 plots.
+        <br> 
+        <br> Website shows two kinds of plots:
         <br> 1. Countries and Cases bar graphs: plot of user-entered country and four other countries from the same continent.
         <br> 2. Spread of Infections in Countries: increase or decrease of infections in three user-entered countries.
         <br> The data source is:
         https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data
-        <br> Covid-19 data file date: 20.08.2020 
         <br>
         <a href="{{ url_for('country_form') }}">Countries and Cases bar graphs</a>
         <br>
-        <br>
-        <br>
         <a href="{{ url_for('linegraphs_form') }}">Spread of Infections in Countries</a>
         <br>
+        <br> Endpoints
+        <br> [graph_type]/country
+        <br> Returns a dictionary with:
+        <br> keys --> user-entered country + 4 other random countries from the same continent as user-entered country
+        <br> values --> ”number of cases” for each of the countries 
+        <br> [graph_type] is required and should be: bargraph                
+        <br> API Version:  1
+        <br> Response Format:  json
+        <br> Example Resource URL: https://covid-19-visualizations.ey.r.appspot.com/api/v1/bargraph/country?id=India
+        <br> Example Response:
+        <br> {
+              "India": 42.18358533, 
+              "Iraq": 83.56697107, 
+              "Kuwait": 210.85898832, 
+              "Malaysia": 0.56025409, 
+              "Palestine": 120.76872829
+             }
+        <br> Parameters
+        <br> Name:  Id
+        <br> Description:   Specify a country name as provided in the dropdown list of countries on this site
+        <br> Required:  yes
+        <br> Default:  none
         <br> 
         <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br>
-        <br>
-        <br> 
-        <br> Last updated: 28.08.2020 
+        <br> The code and the project development plan can be viewed at https://github.com/adikele/covid-cases-webapp     
+        <br> Covid-19 data file date: 1.09.2020    Next data update: 8.9.2020
+        <br> Website last updated: 2.09.2020
         <br> Programmed in Python 3.7 by Aditya Kelekar, an IT engineer and hobby programmer, at Helsinki, Finland.
-        <br> The code and the project development plan can be viewed at https://github.com/adikele/covid-19-visualizations.
-        <br> Please write to Aditya at adityakelekar@yahoo.com if you would like to contribute to this project.
-        <br> Also, all suggestions are welcome. 
-        <br> Thank you for visiting this project!
+        <br> Would like to contribute? Do you have suggestions? Welcome! Please write to me at adityakelekar@yahoo.com 
+        <br> 
+        <br> Thank you for visiting this project! Stay safe in this Covid pandemic!
     </body>
 </html>
