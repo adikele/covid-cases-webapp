@@ -11,10 +11,10 @@ from flask import Flask, request, render_template, Response, jsonify
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-DATA_FILE = "EUOpenData_1_9_2020"
-DATA_DATE = "01/09/2020"
-NEXT_UPDATE_DATE = "08/09/2020"
-NUMBER_OF_DAYS = 147
+DATA_FILE = "EUOpenData_21_9_2020"
+DATA_DATE = "21/09/2020"
+NEXT_UPDATE_DATE = "28/09/2020"
+NUMBER_OF_DAYS = 167
 global x, y
 
 app = Flask(__name__)
@@ -123,9 +123,9 @@ def create_figure(countries, cases):
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.bar(countries, cases, color="blue")
-    axis.set_ylabel("Persons infected in last 14 days")
+    axis.set_ylabel("Persons infected in last 14 days (source: EU Open Data)")
     axis.set_title(
-        f"Cumulative number (14 days) of COVID-19 cases per 100000 persons \n Data updated on: {DATA_DATE} Next update: {NEXT_UPDATE_DATE}"
+        f"Cumulative number (14 days) of COVID-19 cases per 100000 persons \n Data updated on: {DATA_DATE}  Next update: {NEXT_UPDATE_DATE}"
     )
     return fig
 
@@ -196,7 +196,7 @@ def fetch_three_countries_data(
 
 @app.route("/")
 def index():
-    return render_template("index.jinja2")
+    return render_template("index.html")
 
 
 @app.route("/country_form")
@@ -257,13 +257,13 @@ def create_figure_linegraphs(newlistdate_list, dict_three_countries):
     for i in dict_three_countries.keys():
         axis.plot(newlistdate_list, dict_three_countries[i], label=i)
     axis.set_xticks(
-        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020"]
+        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020", "15/09/2020"]
     )
-    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-August"]
+    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-August", "mid-September"]
     axis.set_xticklabels(z)
     axis.set_ylabel("Cumulative number of new virus infections per 100000 inhabitants")
     axis.set_xlabel("Year 2020")  # doesn't work
-    axis.set_title("Covid-19 infections - Country Graphs")
+    axis.set_title("Covid-19 infections - Country Graphs (source: EU Open Data)")
     axis.legend(loc="best")
     return fig
 

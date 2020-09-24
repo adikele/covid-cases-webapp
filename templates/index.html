@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br> 
+    <h3> Welcome to <span class="text-primary">Covid-19 Plots</span></h2>
+    <h4 class="text-primary">
+        
+    </h4>
+    <p >
+        Click on a link below to see the plot of your choice
+        <ul>
+            <a href="{{ url_for('country_form') }}">Countries and Cases bar graphs</a>
+            <li>Bargraphs of one user-entered country and four other countries from the same continent</li>
+            <br> 
+            <a href="{{ url_for('linegraphs_form') }}">Spread of Infections in Countries</a>
+            <li>Linegraphs of infections in three user-entered countries over a period of time</li>
+            <br> 
+            <br>     
+        </ul>
+    </p>
+    <br> 
+<h5>
+         Source Data
+    </h5>
+    <p > The data source for the graphs: 
+        <a href="https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data">European Union Open Data Portal</a>
+        <br> Covid-19 data updated weekly. Current file date: 21st September 2020    
+        <br>     
+    </p>
+<h5>
+         How to join this project
+    </h5>
+    <p >
+         This is a not-for-profit open-source project. <a href="https://github.com/adikele/covid-cases-webapp">https://github.com/adikele/covid-cases-webapp</a>
+        <br> Would you like to contribute? Do you have suggestions? Please write to me at adityakelekar@yahoo.com
+    </p>
+{% endblock %}
