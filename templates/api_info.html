@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br> 
+    <h3> Project APIs: API Version 1  </h3>
+    <br>
+    <h4 class="text-primary"> Endpoint: [graph_type]/country       
+    </h4>
+    <p >
+        
+        <ul>
+                 Returns:
+            <br> A dictionary with:
+            <br> keys --> user-entered country + 4 other random countries from the same continent as user-entered country
+            <br> values --> ”number of cases” for each of the countries 
+            <br> [graph_type] is required and should be: bargraph                
+            <br> 
+            <br> Response Format:  json
+            <br> Example Resource URL: https://covid-19-visualizations.ey.r.appspot.com/api/v1/bargraph/country?id=India
+            <br> Example Response:
+            <br> {
+                  "India": 42.18358533, 
+                  "Iraq": 83.56697107, 
+                  "Kuwait": 210.85898832, 
+                  "Malaysia": 0.56025409, 
+                  "Palestine": 120.76872829
+                 }
+            <br> Parameters
+            <br> Name:  Id
+            <br> Description:   Specify a country name as provided in the dropdown list of countries on this site
+            <br> Required:  yes
+            <br> Default:  none
+            <br>     
+        </ul>
+    </p>
+    <br> 
+<h5>
+         
+    </h5>
+    <p >     
+    </p>
+<h5>
+         
+    </h5>
+    <p >
+         
+    </p>
+{% endblock %}

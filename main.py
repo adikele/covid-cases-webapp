@@ -1,6 +1,7 @@
 # This module has functions for creating bargraphs and linegraphs
 # The functions for bargraphs are written first, followed by those for linegraphs
-# Bargraphs show countries and cases for 1 user-entered country + 4 random countries
+# Bargraphs show countries and cases for:
+# (i) 1 user-entered country + (ii) 4 random countries from same continent as user entered country
 # Linegraphs plot number of case (yaxis) versus time (xaxis) for 3 user-entered countries
 # .csv data file obtained from: https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data
 # Program created by Aditya Kelekar (adityakelekar@yahoo.com)
@@ -11,10 +12,10 @@ from flask import Flask, request, render_template, Response, jsonify
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-DATA_FILE = "EUOpenData_21_9_2020"
-DATA_DATE = "21/09/2020"
-NEXT_UPDATE_DATE = "28/09/2020"
-NUMBER_OF_DAYS = 167
+DATA_FILE = "EUOpenData_19_10_2020"
+DATA_DATE = "19/10/2020"
+NEXT_UPDATE_DATE = "26/10/2020"
+NUMBER_OF_DAYS = 195
 global x, y
 
 app = Flask(__name__)
@@ -198,6 +199,9 @@ def fetch_three_countries_data(
 def index():
     return render_template("index.html")
 
+@app.route("/api_info")
+def api_info():
+    return render_template("api_info.html")
 
 @app.route("/country_form")
 def country_form():
@@ -257,9 +261,9 @@ def create_figure_linegraphs(newlistdate_list, dict_three_countries):
     for i in dict_three_countries.keys():
         axis.plot(newlistdate_list, dict_three_countries[i], label=i)
     axis.set_xticks(
-        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020", "15/09/2020"]
+        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020", "15/09/2020", "15/10/2020"]
     )
-    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-August", "mid-September"]
+    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-August", "mid-September", "mid-October"]
     axis.set_xticklabels(z)
     axis.set_ylabel("Cumulative number of new virus infections per 100000 inhabitants")
     axis.set_xlabel("Year 2020")  # doesn't work
