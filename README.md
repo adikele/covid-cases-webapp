@@ -51,7 +51,7 @@ Scroll and select Bhutan, click on: Show results
 
 Click on: Show bargraph
 
-Your downloaded project is running successful if you see a bar graph with bhutan and four other countries.
+Your downloaded project is running successful if you see a bar graph with Bhutan and four other countries.
 
 Note: If you want to exit from the project on your Terminal, either close or it press: Ctrl + C
 
