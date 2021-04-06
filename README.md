@@ -44,9 +44,13 @@ Running on http://127.0.0.1:5000/
 Step 3 : Leave the Terminal or minimize it but do not close the Terminal. 
 Go to your browser and paste the URL: http://127.0.0.1:5000/
 The site page displayed should have the title: COVID-19 PLOTS
+
 Click on: Countries and Cases bar graphs
+
 Scroll and select Bhutan, click on: Show results
+
 Click on: Show bargraph
+
 Your downloaded project is running successful if you see a bar graph with bhutan and four other countries.
 
 Note: If you want to exit from the project on your Terminal, either close or it press: Ctrl + C
