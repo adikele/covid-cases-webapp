@@ -12,10 +12,10 @@ from flask import Flask, request, render_template, Response, jsonify
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-DATA_FILE = "EUOpenData_19_10_2020"
-DATA_DATE = "19/10/2020"
-NEXT_UPDATE_DATE = "26/10/2020"
-NUMBER_OF_DAYS = 195
+DATA_FILE = "EUOpenData_06_12_2020"
+DATA_DATE = "06/12/2020"
+NEXT_UPDATE_DATE = "13/12/2020"
+NUMBER_OF_DAYS = 240
 global x, y
 
 app = Flask(__name__)
@@ -261,12 +261,12 @@ def create_figure_linegraphs(newlistdate_list, dict_three_countries):
     for i in dict_three_countries.keys():
         axis.plot(newlistdate_list, dict_three_countries[i], label=i)
     axis.set_xticks(
-        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020", "15/09/2020", "15/10/2020"]
+        ["15/04/2020", "15/05/2020", "15/06/2020", "15/07/2020", "15/08/2020", "15/09/2020", "15/10/2020", "15/11/2020"]
     )
-    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-August", "mid-September", "mid-October"]
+    z = ["mid-April", "mid-May", "mid-June", "mid-July", "mid-Aug", "mid-Sept", "mid-Oct", "mid-Nov"]
     axis.set_xticklabels(z)
     axis.set_ylabel("Cumulative number of new virus infections per 100000 inhabitants")
-    axis.set_xlabel("Year 2020")  # doesn't work
+    axis.set_xlabel("Year 2020 (last update: 6th Dec 2020)")  
     axis.set_title("Covid-19 infections - Country Graphs (source: EU Open Data)")
     axis.legend(loc="best")
     return fig
@@ -332,5 +332,6 @@ def api_id():
     return jsonify(dict_fivecountries)
 
 
-if __name__ == "__main__":
-    app.server(host="0.0.0.0", port=8080, debug=True)
+if __name__ == '__main__':
+    app.debug = True
+    app.run()
