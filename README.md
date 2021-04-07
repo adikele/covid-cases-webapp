@@ -21,20 +21,15 @@ Step 1 : Install Python 3.7+
 
 Step 2 : In your Terminal, first cd into the directory you would like to store the Covid project. 
 Then type the following commands one after another in your Terminal:
-
+```
 mkdir covid-project && cd covid-project
-
 python3 -m venv covid-venv
-
 source covid-venv/bin/activate
-
 git clone https://github.com/adikele/covid-cases-webapp
-
 cd covid-cases-webapp
-
 pip install -r requirements.txt
-
 python app.py 
+```
 
 Your installation is successful if you have a message saying:
 Serving Flask app "app" (lazy loading)
