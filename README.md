@@ -32,9 +32,11 @@ python app.py
 ```
 
 Your installation is successful if you have a message saying:
+```
 Serving Flask app "app" (lazy loading)
 (more output)
 Running on http://127.0.0.1:5000/
+```
 
 Step 3 : Leave the Terminal or minimize it but do not close the Terminal. 
 Go to your browser and paste the URL: http://127.0.0.1:5000/
