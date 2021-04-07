@@ -11,6 +11,12 @@ The project website can be found at: https://covid-19-visualizations.ey.r.appspo
 Currently website users can plot graphs for:
 (i) Bargraphs of one user-entered country and four other countries from the same continent
 (ii) Linegraphs of infections in three user-entered countries over a period of time
+Docker image: https://hub.docker.com/repository/docker/adikele/covid3
+
+TO DO TASKS:
+1. Rewrite program to extend time period beyond December 2020. 
+(Current program creates a website that shows Covid data until 6th December 2020. The format of the data hosted by EU Open Portal was changed in December 2020.)
+2. Provide user the option to input a time period for which line graphs should be drawn.
 
 INSTALLATION AND RUNNING THE PROJECT:
 On Linux and Mac:
@@ -53,7 +59,7 @@ Your downloaded project is running successful if you see a bar graph with Bhutan
 Note: If you want to exit from the project on your Terminal, either close or it press: Ctrl + C
 
 TESTS:
-Tested for different countries by running program and manually checking ouput. 
+Tested for different countries by running program and manually checking output. 
 
 HOW TO GET IN TOUCH: 
 Please write to me at adityakelekar@yahoo.com for contributions and suggestions. Thank you!
